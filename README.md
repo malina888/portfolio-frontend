@@ -181,9 +181,10 @@ yarn upgrade @gi-org-pl/athena --latest
 - [BiomeJS Documentation](https://biomejs.dev/) - BiomeJS linter and formatter documentation
 - [Storybook Documentation](https://storybook.js.org/) - Storybook component development and visual testing documentation
 
-[## API
+## API
 
 This app uses the API from my back-end repository:
 https://github.com/malina888/blog-backend
 
-Locally the API runs at `http://localhost:PORT` (see the back-end README for how to start it).](https://github.com/malina888/blog-backend)
+Locally the API runs at `http://localhost:3000`.
+The API is not used yet, it will be connected in a later task.
