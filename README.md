@@ -1,10 +1,8 @@
-![vite-project-boilerplate header](https://raw.githubusercontent.com/gi-org-pl/vite-project-boilerplate/main/.github/image/header.png)
-
-# Vite Project Boilerplate
+# Portfolio Frontend
 
 ## Repository contents
 
-Repository contains boilerplate project using Vite.
+Personal website of Maciej Malinowski, built during the internship. A front-end only app using Vite, React and TypeScript.
 
 Project is using tools in versions listed below:
 
@@ -44,7 +42,7 @@ Project's main dependencies are listed below.
 
 ## Infrastructure
 
-This is a frontend-only boilerplate that runs locally using Vite development server.
+This is a front-end only app that runs locally using Vite development server.
 
 ## Setting project up
 
@@ -63,13 +61,13 @@ This app uses Node.js and Yarn package manager. In order to set up project, foll
 3. Clone project by running:
 
    ```shell
-   git clone <your-repository-url>
+   git clone git@github.com:malina888/portfolio-frontend.git
    ```
 
 4. Navigate to the project directory:
 
    ```shell
-   cd vite-project-boilerplate
+   cd portfolio-frontend
    ```
 
 5. Install dependencies using Yarn:
@@ -112,7 +110,7 @@ Build the project with `yarn build` and preview the production build locally wit
 
 ## Testing
 
-This boilerplate includes both unit testing and end-to-end testing:
+This project includes both unit testing and end-to-end testing:
 
 - **Unit Tests**: Uses Vitest with React Testing Library for component and utility testing
 - **E2E Tests**: Uses Playwright for browser-based end-to-end testing
@@ -128,7 +126,7 @@ yarn e2e:ui            # Run E2E tests in UI mode
 
 ## Linting
 
-This boilerplate uses BiomeJS for code linting and formatting. Biome is a fast, all-in-one toolchain that replaces ESLint, Prettier, and other tools.
+This project uses BiomeJS for code linting and formatting. Biome is a fast, all-in-one toolchain that replaces ESLint, Prettier, and other tools.
 
 - **Linter**: BiomeJS provides fast linting with TypeScript support
 - **Formatter**: Built-in code formatter with consistent style
@@ -145,7 +143,7 @@ The project is configured with custom linting rules in `biome.json`, including c
 
 ## Visual testing
 
-This boilerplate uses Storybook for visual testing and component development. Storybook provides an isolated environment to develop, test, and document UI components independently.
+This project uses Storybook for visual testing and component development. Storybook provides an isolated environment to develop, test, and document UI components independently.
 
 - **Component Development**: Build and test components in isolation
 - **Visual Testing**: Preview components with different props and states
@@ -182,3 +180,10 @@ yarn upgrade @gi-org-pl/athena --latest
 - [Playwright Documentation](https://playwright.dev/) - Playwright E2E testing documentation
 - [BiomeJS Documentation](https://biomejs.dev/) - BiomeJS linter and formatter documentation
 - [Storybook Documentation](https://storybook.js.org/) - Storybook component development and visual testing documentation
+
+[## API
+
+This app uses the API from my back-end repository:
+https://github.com/malina888/blog-backend
+
+Locally the API runs at `http://localhost:PORT` (see the back-end README for how to start it).](https://github.com/malina888/blog-backend)
