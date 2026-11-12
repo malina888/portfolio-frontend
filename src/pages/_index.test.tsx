@@ -18,5 +18,24 @@ describe("<Index /> home page", () => {
     it("puts the content in the main landmark", () => {
       expect(screen.getByRole("main")).toBeInTheDocument();
     });
+
+    it("shows every section, in reading order", () => {
+      const sectionHeadings = screen
+        .getAllByRole("heading", { level: 2 })
+        .map((heading) => heading.textContent);
+
+      expect(sectionHeadings).toEqual([
+        "About me",
+        "Currently learning",
+        "Interests",
+        "Contact",
+      ]);
+    });
+
+    it("ends with a footer for the current year", () => {
+      expect(screen.getByRole("contentinfo")).toHaveTextContent(
+        `© ${new Date().getFullYear()} ${AUTHOR_NAME}`,
+      );
+    });
   });
 });

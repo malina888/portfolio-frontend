@@ -119,3 +119,5 @@ export const INTERESTS: string[] = [
 export const CONTACT_LINKS: ExternalLink[] = [
   { label: "GitHub", url: GITHUB_URL },
 ];
+
+export const CONTACT_TEXT = "Want to see what I'm building? Find me here:";
