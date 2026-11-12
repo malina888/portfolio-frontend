@@ -3,4 +3,5 @@ import { flatRoutes } from "@react-router/fs-routes";
 
 export default flatRoutes({
   rootDirectory: "pages",
+  ignoredRouteFiles: ["**/*.test.tsx"],
 }) satisfies RouteConfig;

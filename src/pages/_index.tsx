@@ -1,20 +1,21 @@
-import { useNavigate } from "react-router";
-import Button from "../components/shared/Button/Button";
-import { addTwoNumbers } from "../utils/number/addTwoNumbers";
+import ProfileHeader from "@/components/about-me/ProfileHeader/ProfileHeader";
+import {
+  AUTHOR_NAME,
+  AUTHOR_PORTRAIT,
+  AUTHOR_TAGLINE,
+  GITHUB_URL,
+} from "@/constants/about-me";
 
 const Index = () => {
-  const navigate = useNavigate();
-  const sum = addTwoNumbers(2, 2);
-
-  const handleClick = () => {
-    navigate("/another-page");
-  };
-
   return (
-    <>
-      <div>2 + 2 = {sum}</div>
-      <Button onClick={handleClick}>Go to another page</Button>
-    </>
+    <main className="mx-auto flex w-full max-w-3xl flex-col gap-10 px-4 py-8 sm:py-14">
+      <ProfileHeader
+        name={AUTHOR_NAME}
+        tagline={AUTHOR_TAGLINE}
+        portrait={AUTHOR_PORTRAIT}
+        links={[{ label: "GitHub", url: GITHUB_URL }]}
+      />
+    </main>
   );
 };
 
