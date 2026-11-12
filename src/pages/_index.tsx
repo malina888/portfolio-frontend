@@ -2,6 +2,7 @@ import AchievementList from "@/components/about-me/AchievementList/AchievementLi
 import ContactLinks from "@/components/about-me/ContactLinks/ContactLinks";
 import HighlightList from "@/components/about-me/HighlightList/HighlightList";
 import ProfileHeader from "@/components/about-me/ProfileHeader/ProfileHeader";
+import ProjectList from "@/components/about-me/ProjectList/ProjectList";
 import SiteFooter from "@/components/about-me/SiteFooter/SiteFooter";
 import TagList from "@/components/about-me/TagList/TagList";
 import TextSection from "@/components/about-me/TextSection/TextSection";
@@ -17,6 +18,7 @@ import {
   GITHUB_URL,
   HIGHLIGHTS,
   INTERESTS,
+  PROJECTS,
 } from "@/constants/about-me";
 
 const Index = () => {
@@ -32,6 +34,7 @@ const Index = () => {
         <HighlightList highlights={HIGHLIGHTS} />
         <TextSection title="About me" text={ABOUT_ME} />
         <AchievementList title="Achievements" achievements={ACHIEVEMENTS} />
+        <ProjectList title="Projects" projects={PROJECTS} />
         <TagList
           title="Currently learning"
           tags={CURRENTLY_LEARNING}
