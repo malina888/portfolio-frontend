@@ -1,3 +1,4 @@
+import AchievementList from "@/components/about-me/AchievementList/AchievementList";
 import ContactLinks from "@/components/about-me/ContactLinks/ContactLinks";
 import HighlightList from "@/components/about-me/HighlightList/HighlightList";
 import ProfileHeader from "@/components/about-me/ProfileHeader/ProfileHeader";
@@ -6,6 +7,7 @@ import TagList from "@/components/about-me/TagList/TagList";
 import TextSection from "@/components/about-me/TextSection/TextSection";
 import {
   ABOUT_ME,
+  ACHIEVEMENTS,
   AUTHOR_NAME,
   AUTHOR_PORTRAIT,
   AUTHOR_TAGLINE,
@@ -29,6 +31,7 @@ const Index = () => {
         />
         <HighlightList highlights={HIGHLIGHTS} />
         <TextSection title="About me" text={ABOUT_ME} />
+        <AchievementList title="Achievements" achievements={ACHIEVEMENTS} />
         <TagList
           title="Currently learning"
           tags={CURRENTLY_LEARNING}

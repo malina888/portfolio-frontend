@@ -26,6 +26,7 @@ describe("<Index /> home page", () => {
 
       expect(sectionHeadings).toEqual([
         "About me",
+        "Achievements",
         "Currently learning",
         "Interests",
         "Contact",
