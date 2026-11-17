@@ -1,15 +1,9 @@
 import type { Article } from "@/services/api/schemas/article";
+import { formatDate } from "@/utils/date/formatDate";
 
 interface Props {
   article: Article;
 }
-
-const dateFormat = new Intl.DateTimeFormat("en-GB", {
-  day: "numeric",
-  month: "long",
-  year: "numeric",
-  timeZone: "UTC",
-});
 
 const ArticleCard = ({ article }: Props) => {
   return (
@@ -21,7 +15,7 @@ const ArticleCard = ({ article }: Props) => {
         dateTime={article.publishedAt}
         className="text-sm text-gi-dark-gray"
       >
-        {dateFormat.format(new Date(article.publishedAt))}
+        {formatDate(article.publishedAt)}
       </time>
       <p className="line-clamp-3 wrap-anywhere">{article.content}</p>
     </article>
