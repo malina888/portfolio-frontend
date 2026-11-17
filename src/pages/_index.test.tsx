@@ -1,13 +1,25 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { AxiosError } from "axios";
+import { createRoutesStub } from "react-router";
 import { AUTHOR_NAME } from "@/constants/about-me";
+import { getArticle } from "@/services/api/client/getArticle";
 import { getArticles } from "@/services/api/client/getArticles";
 import type { Article } from "@/services/api/schemas/article";
+import { MOCK_ARTICLES } from "@/services/api/schemas/article.mock";
 import Index from "./_index";
+import ArticleRoute from "./articles.$id";
 
 vi.mock("@/services/api/client/getArticles");
+vi.mock("@/services/api/client/getArticle");
 
 const getArticlesMock = vi.mocked(getArticles);
+const getArticleMock = vi.mocked(getArticle);
+
+// The home page and the article page, so a test can go from one to the other.
+const Stub = createRoutesStub([
+  { path: "/", Component: Index },
+  { path: "/articles/:id", Component: ArticleRoute },
+]);
 
 const SECTION_HEADINGS = [
   "About me",
@@ -89,6 +101,42 @@ describe("<Index /> home page", () => {
 
       expect(await screen.findByRole("alert")).toBeInTheDocument();
       expectTheWholePage();
+    });
+  });
+
+  describe("when a visitor picks an article in the blog section", () => {
+    const article = MOCK_ARTICLES[3];
+
+    beforeEach(() => {
+      getArticlesMock.mockResolvedValue(MOCK_ARTICLES);
+      getArticleMock.mockResolvedValue(article);
+    });
+
+    it("opens the article's page", async () => {
+      render(<Stub initialEntries={["/"]} />);
+
+      fireEvent.click(await screen.findByRole("link", { name: article.title }));
+
+      expect(
+        await screen.findByRole("heading", { level: 1, name: article.title }),
+      ).toBeInTheDocument();
+      expect(getArticleMock).toHaveBeenCalledWith(
+        article.id,
+        expect.any(AbortSignal),
+      );
+    });
+
+    it("lets the visitor go back to the about me page", async () => {
+      render(<Stub initialEntries={["/"]} />);
+      fireEvent.click(await screen.findByRole("link", { name: article.title }));
+
+      fireEvent.click(
+        await screen.findByRole("link", { name: "Back to the about me page" }),
+      );
+
+      expect(
+        await screen.findByRole("heading", { level: 1, name: AUTHOR_NAME }),
+      ).toBeInTheDocument();
     });
   });
 });

@@ -1,5 +1,6 @@
 import { Section } from "@gi-org-pl/athena";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { MemoryRouter } from "react-router";
 import { fn } from "storybook/test";
 import { MOCK_ARTICLES } from "@/services/api/schemas/article.mock";
 import ArticleFeed from "./ArticleFeed";
@@ -11,11 +12,14 @@ const meta = {
     layout: "padded",
   },
   tags: ["autodocs"],
+  // The article titles are router <Link>s, which only work inside a router.
   decorators: [
     (Story) => (
-      <Section title="Blog">
-        <Story />
-      </Section>
+      <MemoryRouter>
+        <Section title="Blog">
+          <Story />
+        </Section>
+      </MemoryRouter>
     ),
   ],
   args: {

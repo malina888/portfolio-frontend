@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { AxiosError } from "axios";
+import { MemoryRouter } from "react-router";
 import { getArticles } from "@/services/api/client/getArticles";
 import type { Article } from "@/services/api/schemas/article";
 import { MOCK_ARTICLES } from "@/services/api/schemas/article.mock";
@@ -18,7 +19,7 @@ describe("<BlogSection />", () => {
     it("shows the title as a section heading", () => {
       getArticlesMock.mockReturnValue(new Promise<Article[]>(() => {}));
 
-      render(<BlogSection title="Blog" />);
+      render(<BlogSection title="Blog" />, { wrapper: MemoryRouter });
 
       expect(
         screen.getByRole("heading", { level: 2, name: "Blog" }),
@@ -30,7 +31,7 @@ describe("<BlogSection />", () => {
     it("shows that the articles are loading, then the articles", async () => {
       getArticlesMock.mockResolvedValue(MOCK_ARTICLES);
 
-      render(<BlogSection title="Blog" />);
+      render(<BlogSection title="Blog" />, { wrapper: MemoryRouter });
 
       expect(screen.getByRole("status")).toHaveTextContent("Loading articles…");
       expect(
@@ -45,7 +46,7 @@ describe("<BlogSection />", () => {
       getArticlesMock
         .mockRejectedValueOnce(new AxiosError("Network Error", "ERR_NETWORK"))
         .mockResolvedValueOnce(MOCK_ARTICLES);
-      render(<BlogSection title="Blog" />);
+      render(<BlogSection title="Blog" />, { wrapper: MemoryRouter });
 
       fireEvent.click(await screen.findByRole("button", { name: "Try again" }));
 
