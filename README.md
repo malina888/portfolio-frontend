@@ -183,8 +183,25 @@ yarn upgrade @gi-org-pl/athena --latest
 
 ## API
 
-This app uses the API from my back-end repository:
+The blog section on the home page reads articles from the API in my back-end repository:
 https://github.com/malina888/blog-backend
 
-Locally the API runs at `http://localhost:3000`.
-The API is not used yet, it will be connected in a later task.
+Start the API before `yarn dev` (see the back-end README). Locally the API runs at `http://localhost`, and this app calls `http://localhost/api/v1`. The API accepts requests only from `http://localhost:5173`, the address of `yarn dev`.
+
+### Changing the API address
+
+The address of the API is read from the `VITE_API_URL` environment variable. When it is not set, the app uses `http://localhost/api/v1`.
+
+To use another address:
+
+1. Copy the example file:
+
+   ```shell
+   cp .env.dist .env
+   ```
+
+2. Change `VITE_API_URL` in `.env`, for example to `VITE_API_URL=https://api.example.com/api/v1`.
+
+3. Restart `yarn dev`, or run `yarn build` again. Vite puts the address into the code when it starts or builds the app, so an app that is already running does not see the change.
+
+`.env` is ignored by git. Do not put secrets in `VITE_` variables: they end up in the JavaScript that every visitor downloads.
