@@ -6,6 +6,7 @@ import ProjectList from "@/components/about-me/ProjectList/ProjectList";
 import SiteFooter from "@/components/about-me/SiteFooter/SiteFooter";
 import TagList from "@/components/about-me/TagList/TagList";
 import TextSection from "@/components/about-me/TextSection/TextSection";
+import BlogSection from "@/components/blog/BlogSection/BlogSection";
 import {
   ABOUT_ME,
   ACHIEVEMENTS,
@@ -35,6 +36,7 @@ const Index = () => {
         <TextSection title="About me" text={ABOUT_ME} />
         <AchievementList title="Achievements" achievements={ACHIEVEMENTS} />
         <ProjectList title="Projects" projects={PROJECTS} />
+        <BlogSection title="Blog" />
         <TagList
           title="Currently learning"
           tags={CURRENTLY_LEARNING}
