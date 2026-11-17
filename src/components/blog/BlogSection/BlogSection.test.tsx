@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { AxiosError } from "axios";
 import { getArticles } from "@/services/api/client/getArticles";
+import type { Article } from "@/services/api/schemas/article";
 import { MOCK_ARTICLES } from "@/services/api/schemas/article.mock";
 import BlogSection from "./BlogSection";
 
@@ -13,19 +14,24 @@ describe("<BlogSection />", () => {
     vi.resetAllMocks();
   });
 
-  describe("when the API answers with articles", () => {
-    beforeEach(() => {
-      getArticlesMock.mockResolvedValue(MOCK_ARTICLES);
-      render(<BlogSection title="Blog" />);
-    });
-
+  describe("when it is rendered", () => {
     it("shows the title as a section heading", () => {
+      getArticlesMock.mockReturnValue(new Promise<Article[]>(() => {}));
+
+      render(<BlogSection title="Blog" />);
+
       expect(
         screen.getByRole("heading", { level: 2, name: "Blog" }),
       ).toBeInTheDocument();
     });
+  });
 
+  describe("when the API answers with articles", () => {
     it("shows that the articles are loading, then the articles", async () => {
+      getArticlesMock.mockResolvedValue(MOCK_ARTICLES);
+
+      render(<BlogSection title="Blog" />);
+
       expect(screen.getByRole("status")).toHaveTextContent("Loading articles…");
       expect(
         await screen.findByRole("heading", { level: 3, name: "Hello, world" }),
