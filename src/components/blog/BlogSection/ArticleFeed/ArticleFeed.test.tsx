@@ -1,11 +1,14 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router";
 import { MOCK_ARTICLES } from "@/services/api/schemas/article.mock";
 import ArticleFeed from "./ArticleFeed";
 
 describe("<ArticleFeed />", () => {
   describe("when the articles are loading", () => {
     it("tells the visitor that they are loading", () => {
-      render(<ArticleFeed state={{ status: "loading" }} onRetry={vi.fn()} />);
+      render(<ArticleFeed state={{ status: "loading" }} onRetry={vi.fn()} />, {
+        wrapper: MemoryRouter,
+      });
 
       expect(screen.getByRole("status")).toHaveTextContent("Loading articles…");
     });
@@ -18,6 +21,7 @@ describe("<ArticleFeed />", () => {
           state={{ status: "success", articles: MOCK_ARTICLES }}
           onRetry={vi.fn()}
         />,
+        { wrapper: MemoryRouter },
       );
     });
 
@@ -43,6 +47,7 @@ describe("<ArticleFeed />", () => {
           state={{ status: "success", articles: [] }}
           onRetry={vi.fn()}
         />,
+        { wrapper: MemoryRouter },
       );
     });
 
@@ -62,7 +67,9 @@ describe("<ArticleFeed />", () => {
 
     beforeEach(() => {
       onRetry.mockClear();
-      render(<ArticleFeed state={{ status: "error" }} onRetry={onRetry} />);
+      render(<ArticleFeed state={{ status: "error" }} onRetry={onRetry} />, {
+        wrapper: MemoryRouter,
+      });
     });
 
     it("shows an error message", () => {

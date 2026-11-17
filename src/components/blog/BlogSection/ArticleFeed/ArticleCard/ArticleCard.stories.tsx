@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { MemoryRouter } from "react-router";
 import { MOCK_ARTICLES } from "@/services/api/schemas/article.mock";
 import ArticleCard from "./ArticleCard";
 
@@ -9,6 +10,14 @@ const meta = {
     layout: "padded",
   },
   tags: ["autodocs"],
+  // The title is a router <Link>, which only works inside a router.
+  decorators: [
+    (Story) => (
+      <MemoryRouter>
+        <Story />
+      </MemoryRouter>
+    ),
+  ],
   args: {
     article: MOCK_ARTICLES[0],
   },
